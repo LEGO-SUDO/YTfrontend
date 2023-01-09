@@ -132,10 +132,10 @@ const Video = () => {
     const fetchData = async () => {
       try {
         const videoRes = await axios.get(
-          `https://videotube.adaptable.app/videos/find/${path}`
+          `https://videotube.adaptable.app/api/videos/find/${path}`
         )
         const channelRes = await axios.get(
-          `https://videotube.adaptable.app/users/find/${videoRes.data.userId}`
+          `https://videotube.adaptable.app/api/users/find/${videoRes.data.userId}`
         )
         //console.log(videoRes.data.title)
         setChannel(channelRes.data)
