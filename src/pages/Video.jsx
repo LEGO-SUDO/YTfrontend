@@ -120,7 +120,8 @@ object-fit:cover
 `
 
 const Video = () => {
-  const { currentVideo } = useSelector((state) => state.video)
+  //const { currentVideo } = useSelector((state) => state.video)
+  const [currentVideo, setCurrentVideo] = useState({})
   const { currentUser } = useSelector((state) => state.user)
   const dispatch = useDispatch()
 
@@ -140,7 +141,7 @@ const Video = () => {
         //console.log(videoRes.data.title)
         setChannel(channelRes.data)
 
-        dispatch(fetchSuccess(videoRes.data))
+        setCurrentVideo(videoRes.data)
       } catch (err) {}
     }
     fetchData()
@@ -175,12 +176,9 @@ const Video = () => {
     <Container>
       <Content>
         <VideoWrapper>
-          <VideoFrame
-            src='https://www.youtube.com/watch?v=PNtFSVU-YTI'
-            controls
-          />
+          <VideoFrame src={currentVideo.videoUrl} controls />
         </VideoWrapper>
-        <Title>{currentUser.name}</Title>
+        <Title>{currentVideo.title}</Title>
         <Details>
           <Info>
             {' '}
