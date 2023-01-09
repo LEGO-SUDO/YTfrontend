@@ -33,7 +33,7 @@ function App() {
             <Navbar />
             <Wrapper>
               <Routes>
-                <Route path='/'>
+                <Route path='/api/'>
                   <Route path='random' element={<Home type='random' />} />
                   <Route path='trends' element={<Home type='trend' />} />
                   <Route path='subscriptions' element={<Home type='sub' />} />

@@ -86,7 +86,7 @@ const SignIn = () => {
         { name, password }
       )
       dispatch(loginSuccess(res.data))
-      navigate('/')
+      navigate('/api/')
     } catch (err) {
       dispatch(loginFailure())
     }
@@ -98,7 +98,7 @@ const SignIn = () => {
       { name, email, password }
     )
     dispatch(loginSuccess(res.data))
-    navigate('/')
+    navigate('/api/')
   }
 
   const signInWithGoogle = async () => {
@@ -112,7 +112,7 @@ const SignIn = () => {
           })
           .then((res) => {
             dispatch(loginSuccess(res.data))
-            navigate('/')
+            navigate('/api/')
           })
       })
       .catch((error) => {
