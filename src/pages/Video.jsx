@@ -175,7 +175,10 @@ const Video = () => {
     <Container>
       <Content>
         <VideoWrapper>
-          <VideoFrame src={currentVideo.videoUrl} controls />
+          <VideoFrame
+            src='https://www.youtube.com/watch?v=PNtFSVU-YTI'
+            controls
+          />
         </VideoWrapper>
         <Title>{currentVideo.title}</Title>
         <Details>
