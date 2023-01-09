@@ -56,7 +56,9 @@ const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({})
   useEffect(() => {
     const fetchChannel = async () => {
-      const res = await axios.get(`/users/find/${video.userId}`)
+      const res = await axios.get(
+        `https://videotube.adaptable.app/api/users/find/${video.userId}`
+      )
       setChannel(res.data)
     }
     fetchChannel()

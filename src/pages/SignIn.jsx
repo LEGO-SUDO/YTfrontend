@@ -81,7 +81,10 @@ const SignIn = () => {
     dispatch(loginStart())
 
     try {
-      const res = await axios.post('/auth/signin', { name, password })
+      const res = await axios.post(
+        'https://videotube.adaptable.app/api/auth/signin',
+        { name, password }
+      )
       dispatch(loginSuccess(res.data))
       navigate('/')
     } catch (err) {
@@ -90,7 +93,10 @@ const SignIn = () => {
   }
 
   const handleSignup = async (e) => {
-    const res = await axios.post('/auth/signup', { name, email, password })
+    const res = await axios.post(
+      'https://videotube.adaptable.app/api/auth/signup',
+      { name, email, password }
+    )
     dispatch(loginSuccess(res.data))
     navigate('/')
   }
@@ -99,7 +105,7 @@ const SignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         axios
-          .post('/auth/google', {
+          .post('https://videotube.adaptable.app/api/auth/google', {
             name: result.user.displayName,
             email: result.user.email,
             img: result.user.photoURL,

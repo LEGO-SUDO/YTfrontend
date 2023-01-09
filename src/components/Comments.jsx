@@ -37,7 +37,9 @@ const Comments = ({ videoId }) => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await axios.get(`/comments/${videoId}`)
+        const res = await axios.get(
+          `https://videotube.adaptable.app/api/comments/${videoId}`
+        )
         setComments(res.data)
       } catch (err) {}
     }
@@ -45,11 +47,14 @@ const Comments = ({ videoId }) => {
   }, [videoId])
 
   const handleSubmit = async () => {
-    const res = await axios.post('/comments', {
-      userId: currentUser._id,
-      videoId: videoId,
-      desc: newComment,
-    })
+    const res = await axios.post(
+      'https://videotube.adaptable.app/api/comments',
+      {
+        userId: currentUser._id,
+        videoId: videoId,
+        desc: newComment,
+      }
+    )
   }
 
   return (
