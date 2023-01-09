@@ -180,7 +180,7 @@ const Video = () => {
             controls
           />
         </VideoWrapper>
-        <Title>{currentVideo.title}</Title>
+        <Title>{currentUser.name}</Title>
         <Details>
           <Info>
             {' '}
