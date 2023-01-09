@@ -14,7 +14,7 @@ const Home = ({ type }) => {
   useEffect(() => {
     const fetchVideos = async () => {
       const res = await axios.get(
-        `https://videotube.adaptable.app/videos/${type}`
+        `https://videotube.adaptable.app/api/videos/${type}`
       )
       setVideos(res.data)
     }
