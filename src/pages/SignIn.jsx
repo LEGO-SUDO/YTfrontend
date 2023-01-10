@@ -82,8 +82,9 @@ const SignIn = () => {
 
     try {
       const res = await axios.post(
-        'https://videotube.adaptable.app/api/auth/signin',
-        { name, password }
+        'https://legotube-api.onrender.com/api/auth/signin',
+        { name, password },
+        { withCredentials: true }
       )
       dispatch(loginSuccess(res.data))
       navigate('/random')
@@ -94,8 +95,9 @@ const SignIn = () => {
 
   const handleSignup = async (e) => {
     const res = await axios.post(
-      'https://videotube.adaptable.app/api/auth/signup',
-      { name, email, password }
+      'https://legotube-api.onrender.com/api/auth/signup',
+      { name, email, password },
+      { withCredentials: true }
     )
     dispatch(loginSuccess(res.data))
     navigate('/random')
@@ -105,11 +107,15 @@ const SignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         axios
-          .post('https://videotube.adaptable.app/api/auth/google', {
-            name: result.user.displayName,
-            email: result.user.email,
-            img: result.user.photoURL,
-          })
+          .post(
+            'https://legotube-api.onrender.com/api/auth/google',
+            {
+              name: result.user.displayName,
+              email: result.user.email,
+              img: result.user.photoURL,
+            },
+            { withCredentials: true }
+          )
           .then((res) => {
             dispatch(loginSuccess(res.data))
             navigate('/random')
