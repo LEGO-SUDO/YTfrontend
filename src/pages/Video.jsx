@@ -150,7 +150,7 @@ const Video = () => {
   }, [path, dispatch])
 
   const handleLike = async () => {
-    await axios.put(
+    await axios.post(
       `https://legotube-api.onrender.com/api/users/like/${currentVideo._id}`,
       { withCredentials: true }
     )
