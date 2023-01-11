@@ -133,11 +133,11 @@ const Video = () => {
     const fetchData = async () => {
       try {
         const videoRes = await axios.get(
-          `https://legotube-api.onrender.com/api/videos/find/${path}`,
+          `https://videotube.adaptable.app/api/videos/find/${path}`,
           { withCredentials: true }
         )
         const channelRes = await axios.get(
-          `https://legotube-api.onrender.com/api/users/find/${videoRes.data.userId}`,
+          `https://videotube.adaptable.app/api/users/find/${videoRes.data.userId}`,
           { withCredentials: true }
         )
         //console.log(videoRes.data.title)
@@ -151,7 +151,7 @@ const Video = () => {
 
   const handleLike = async () => {
     await axios.put(
-      `https://legotube-api.onrender.com/api/users/like/${currentVideo._id}`,
+      `https://videotube.adaptable.app/api/users/like/${currentVideo._id}`,
       { withCredentials: true }
     )
     dispatch(like(currentUser._id))
@@ -159,7 +159,7 @@ const Video = () => {
 
   const handleDislike = async () => {
     await axios.put(
-      `https://legotube-api.onrender.com/api/users/dislike/${currentVideo._id}`,
+      `https://videotube.adaptable.app/api/users/dislike/${currentVideo._id}`,
       { withCredentials: true }
     )
     dispatch(dislike(currentUser._id))
@@ -168,11 +168,11 @@ const Video = () => {
   const handleSubscribe = async () => {
     currentUser.subscribedUsers.includes(channel._id)
       ? await axios.put(
-          `https://legotube-api.onrender.com/api/users/unsub/${channel._id}`,
+          `https://videotube.adaptable.app/api/users/unsub/${channel._id}`,
           { withCredentials: true }
         )
       : await axios.put(
-          `https://legotube-api.onrender.com/api/users/sub/${channel._id}`,
+          `https://videotube.adaptable.app/api/users/sub/${channel._id}`,
           { withCredentials: true }
         )
     dispatch(subscription(channel._id))

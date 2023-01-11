@@ -38,7 +38,7 @@ const Comments = ({ videoId }) => {
     const fetchComments = async () => {
       try {
         const res = await axios.get(
-          `https://legotube-api.onrender.com/api/comments/${videoId}`,
+          `https://videotube.adaptable.app/api/comments/${videoId}`,
           { withCredentials: true }
         )
         setComments(res.data)
@@ -49,7 +49,7 @@ const Comments = ({ videoId }) => {
 
   const handleSubmit = async () => {
     const res = await axios.post(
-      'https://legotube-api.onrender.com/api/comments',
+      'https://videotube.adaptable.app/api/comments',
       {
         userId: currentUser._id,
         videoId: videoId,

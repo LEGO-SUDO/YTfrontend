@@ -143,7 +143,7 @@ const Upload = ({ setOpen }) => {
   const handleUpload = async (e) => {
     e.preventDefault()
     const res = await axios.post(
-      'https://legotube-api.onrender.com/api/videos',
+      'https://videotube.adaptable.app/api/videos',
       {
         ...inputs,
         tags,
