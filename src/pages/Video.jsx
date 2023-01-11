@@ -120,8 +120,8 @@ object-fit:cover
 `
 
 const Video = () => {
-  //const { currentVideo } = useSelector((state) => state.video)
-  const [currentVideo, setCurrentVideo] = useState({})
+  const { currentVideo } = useSelector((state) => state.video)
+  // const [currentVideo, setCurrentVideo] = useState({})
   const { currentUser } = useSelector((state) => state.user)
   const dispatch = useDispatch()
 
@@ -133,17 +133,15 @@ const Video = () => {
     const fetchData = async () => {
       try {
         const videoRes = await axios.get(
-          `https://videotube.adaptable.app/api/videos/find/${path}`,
-          { withCredentials: true }
+          `https://videotube.adaptable.app/api/videos/find/${path}`
         )
         const channelRes = await axios.get(
-          `https://videotube.adaptable.app/api/users/find/${videoRes.data.userId}`,
-          { withCredentials: true }
+          `https://videotube.adaptable.app/api/users/find/${videoRes.data.userId}`
         )
         //console.log(videoRes.data.title)
         setChannel(channelRes.data)
 
-        setCurrentVideo(videoRes.data)
+        dispatch(fetchSuccess(videoRes.data))
       } catch (err) {}
     }
     fetchData()
@@ -151,8 +149,7 @@ const Video = () => {
 
   const handleLike = async () => {
     await axios.put(
-      `https://videotube.adaptable.app/api/users/like/${currentVideo._id}`,
-      { withCredentials: true }
+      `https://videotube.adaptable.app/api/users/like/${currentVideo._id}`
     )
     dispatch(like(currentUser._id))
   }
