@@ -142,7 +142,9 @@ const Video = () => {
         setChannel(channelRes.data)
 
         dispatch(fetchSuccess(videoRes.data))
-      } catch (err) {}
+      } catch (err) {
+        console.log(err)
+      }
     }
     fetchData()
   }, [path, dispatch])
