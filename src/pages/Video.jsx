@@ -116,7 +116,7 @@ const Subscribe = styled.button`
 const VideoFrame = styled.video`
 max-height: 72px
 width:50%
-object-fit:cover
+object-fit: cover
 `
 
 const Video = () => {
@@ -182,7 +182,11 @@ const Video = () => {
     <Container>
       <Content>
         <VideoWrapper>
-          <VideoFrame src={currentVideo.videoUrl} controls />
+          <VideoFrame
+            src={currentVideo.videoUrl}
+            controls
+            style={{ maxWidth: '680px' }}
+          />
         </VideoWrapper>
         <Title>{currentVideo.title}</Title>
         <Details>
