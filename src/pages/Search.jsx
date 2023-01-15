@@ -19,7 +19,7 @@ const Search = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       const res = await axios.get(
-        `https://videotube.adaptable.app/api/videos/search${query}`,
+        `https://legotube.onrender.com/api/videos/search${query}`,
         { withCredentials: true }
       )
       setVideos(res.data)

@@ -82,7 +82,7 @@ const SignIn = () => {
 
     try {
       const res = await axios.post(
-        'https://videotube.adaptable.app/api/auth/signin',
+        'https://legotube.onrender.com/api/auth/signin',
         { name, password },
         { withCredentials: true }
       )
@@ -95,7 +95,7 @@ const SignIn = () => {
 
   const handleSignup = async (e) => {
     const res = await axios.post(
-      'https://videotube.adaptable.app/api/auth/signup',
+      'https://legotube.onrender.com/api/auth/signup',
       { name, email, password },
       { withCredentials: true }
     )
@@ -108,7 +108,7 @@ const SignIn = () => {
       .then((result) => {
         axios
           .post(
-            'https://videotube.adaptable.app/api/auth/google',
+            'https://legotube.onrender.com/api/auth/google',
             {
               name: result.user.displayName,
               email: result.user.email,

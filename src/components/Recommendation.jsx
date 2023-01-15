@@ -13,7 +13,7 @@ const Recommendation = ({ tags }) => {
   useEffect(() => {
     const fetchVideos = async () => {
       const res = await axios.get(
-        `https://videotube.adaptable.app/api/videos/tags?tags=${tags}`,
+        `https://legotube.onrender.com/api/videos/tags?tags=${tags}`,
         { withCredentials: true }
       )
       setVideos(res.data)
