@@ -54,7 +54,8 @@ const Comments = ({ videoId }) => {
         userId: currentUser._id,
         videoId: videoId,
         desc: newComment,
-      }
+      },
+      { withCredentials: true }
     )
   }
 

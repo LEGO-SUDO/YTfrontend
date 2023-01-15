@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { format } from 'timeago.js'
 import axios from 'axios'
 const Container = styled.div`
-  width: ${(props) => props.type !== 'sm' && '360px'};
+  width: ${(props) => props.type !== 'sm' && '300px'};
   margin-bottom: ${(props) => (props.type === 'sm' ? '10px' : '45px')};
   cursor: pointer;
   display: ${(props) => props.type === 'sm' && 'flex'};
