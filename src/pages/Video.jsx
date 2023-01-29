@@ -120,8 +120,8 @@ object-fit: cover
 `
 
 const Video = () => {
-  //const { currentVideo } = useSelector((state) => state.video)
-  const [currentVideo, setCurrentVideo] = useState({})
+  const { currentVideo } = useSelector((state) => state.video)
+  //const [currentVideo, setCurrentVideo] = useState({})
 
   const { currentUser } = useSelector((state) => state.user)
   const dispatch = useDispatch()
@@ -141,8 +141,8 @@ const Video = () => {
         )
         console.log(videoRes.data)
         setChannel(channelRes.data)
-        setCurrentVideo(videoRes.data)
-        //dispatch(fetchSuccess(videoRes.data))
+
+        dispatch(fetchSuccess(videoRes.data))
       } catch (err) {
         console.log(err)
       }
