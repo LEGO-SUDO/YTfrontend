@@ -111,7 +111,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
         <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
           <Logo>
             <Img src={LegoTube} />
-            LegoTube
+            VideoTube
           </Logo>
         </Link>
         <Link to='random' style={{ textDecoration: 'none', color: 'inherit' }}>
