@@ -148,7 +148,16 @@ const Upload = ({ setOpen }) => {
         ...inputs,
         tags,
       },
-      { withCredentials: true }
+      {
+        withCredentials: true,
+        crossDomain: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Origin':
+            'https://vocal-sprite-dd6c42.netlify.app',
+        },
+      }
     )
     setOpen(false)
 

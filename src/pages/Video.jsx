@@ -152,7 +152,17 @@ const Video = () => {
 
   const handleLike = async () => {
     await axios.put(
-      `https://legotube-api.onrender.com/api/users/like/${currentVideo._id}`
+      `https://legotube-api.onrender.com/api/users/like/${currentVideo._id}`,
+      {
+        withCredentials: true,
+        crossDomain: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Origin':
+            'https://vocal-sprite-dd6c42.netlify.app',
+        },
+      }
     )
     dispatch(like(currentUser._id))
   }
@@ -160,7 +170,16 @@ const Video = () => {
   const handleDislike = async () => {
     await axios.put(
       `https://legotube-api.onrender.com/api/users/dislike/${currentVideo._id}`,
-      { withCredentials: true }
+      {
+        withCredentials: true,
+        crossDomain: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Origin':
+            'https://vocal-sprite-dd6c42.netlify.app',
+        },
+      }
     )
     dispatch(dislike(currentUser._id))
   }
@@ -169,11 +188,29 @@ const Video = () => {
     currentUser.subscribedUsers.includes(channel._id)
       ? await axios.put(
           `https://legotube-api.onrender.com/api/users/unsub/${channel._id}`,
-          { withCredentials: true }
+          {
+            withCredentials: true,
+            crossDomain: true,
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+              'Access-Control-Allow-Origin':
+                'https://vocal-sprite-dd6c42.netlify.app',
+            },
+          }
         )
       : await axios.put(
           `https://legotube-api.onrender.com/api/users/sub/${channel._id}`,
-          { withCredentials: true }
+          {
+            withCredentials: true,
+            crossDomain: true,
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+              'Access-Control-Allow-Origin':
+                'https://vocal-sprite-dd6c42.netlify.app',
+            },
+          }
         )
     dispatch(subscription(channel._id))
   }

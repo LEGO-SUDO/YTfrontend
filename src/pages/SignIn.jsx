@@ -84,7 +84,16 @@ const SignIn = () => {
       const res = await axios.post(
         'https://legotube-api.onrender.com/api/auth/signin',
         { name, password },
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          crossDomain: true,
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            'Access-Control-Allow-Origin':
+              'https://vocal-sprite-dd6c42.netlify.app',
+          },
+        }
       )
       dispatch(loginSuccess(res.data))
       navigate('/random')
@@ -97,7 +106,16 @@ const SignIn = () => {
     const res = await axios.post(
       'https://legotube-api.onrender.com/api/auth/signup',
       { name, email, password },
-      { withCredentials: true }
+      {
+        withCredentials: true,
+        crossDomain: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Origin':
+            'https://vocal-sprite-dd6c42.netlify.app',
+        },
+      }
     )
     dispatch(loginSuccess(res.data))
     navigate('/random')
@@ -114,7 +132,16 @@ const SignIn = () => {
               email: result.user.email,
               img: result.user.photoURL,
             },
-            { withCredentials: true }
+            {
+              withCredentials: true,
+              crossDomain: true,
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Access-Control-Allow-Origin':
+                  'https://vocal-sprite-dd6c42.netlify.app',
+              },
+            }
           )
           .then((res) => {
             dispatch(loginSuccess(res.data))
