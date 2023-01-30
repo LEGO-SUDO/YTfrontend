@@ -10,7 +10,7 @@ import Comments from '../components/Comments'
 
 import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { useSelector, shallowEqual } from 'react-redux'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
@@ -120,8 +120,8 @@ object-fit: cover
 `
 
 const Video = () => {
-  const { currentVideo } = useSelector((state) => state.video)
-  //const [currentVideo, setCurrentVideo] = useState({})
+  //const { currentVideo } = useSelector((state) => state.video)
+  const [currentVideo, setCurrentVideo] = useState({})
 
   const { currentUser } = useSelector((state) => state.user)
   const dispatch = useDispatch()
@@ -141,7 +141,7 @@ const Video = () => {
         )
         console.log(videoRes.data)
         setChannel(channelRes.data)
-
+        setCurrentVideo(videoRes.data)
         dispatch(fetchSuccess(videoRes.data))
       } catch (err) {
         console.log(err)
@@ -220,16 +220,19 @@ const Video = () => {
       <Content>
         <VideoWrapper>
           <VideoFrame
-            src={currentVideo.videoUrl}
+            // {currentVideo.videoUrl}
+            src='https://www.youtube.com/watch?v=-u04JD5Eo-c'
             controls
             style={{ maxWidth: '680px' }}
           />
         </VideoWrapper>
-        <Title>{currentVideo.title}</Title>
+        {/* {currentVideo.title} */}
+        <Title>{channel.name}</Title>
         <Details>
           <Info>
             {' '}
-            {currentVideo.views} views • {format(currentVideo.createdAt)}
+            {/* {currentVideo.views} */}
+            {channel.name} views • {format(currentVideo.createdAt)}
           </Info>
           <Buttons>
             <Button onClick={handleLike}>
