@@ -14,8 +14,7 @@ const Home = ({ type }) => {
   useEffect(() => {
     const fetchVideos = async () => {
       const res = await axios.get(
-        `https://legotube-api.onrender.com/api/videos/${type}`,
-        { withCredentials: true }
+        `https://legotube-api.onrender.com/api/videos/${type}`
       )
       setVideos(res.data)
     }
