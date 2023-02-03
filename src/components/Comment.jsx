@@ -44,8 +44,7 @@ const Comment = ({ comment }) => {
   useEffect(() => {
     const fetchComment = async () => {
       const res = await axios.get(
-        `https://legotube-api.onrender.com/api/users/find/${comment.userId}`,
-        { withCredentials: true }
+        `https://videotube.adaptable.app/api/users/find/${comment.userId}`
       )
       setUser(res.data)
     }

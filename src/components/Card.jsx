@@ -57,7 +57,8 @@ const Card = ({ type, video }) => {
   useEffect(() => {
     const fetchChannel = async () => {
       const res = await axios.get(
-        `https://legotube-api.onrender.com/api/users/find/${video.userId}`,
+        `https://videotube.adaptable.app/api/users/find/${video.userId}`,
+        null,
         { withCredentials: true }
       )
       setChannel(res.data)

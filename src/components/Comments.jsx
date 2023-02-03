@@ -38,7 +38,8 @@ const Comments = ({ videoId }) => {
     const fetchComments = async () => {
       try {
         const res = await axios.get(
-          `https://legotube-api.onrender.com/api/comments/${videoId}`,
+          `https://videotube.adaptable.app/api/comments/${videoId}`,
+          null,
           { withCredentials: true }
         )
         setComments(res.data)
@@ -48,8 +49,8 @@ const Comments = ({ videoId }) => {
   }, [videoId])
 
   const handleSubmit = async () => {
-    const res = await axios.post(
-      'https://legotube-api.onrender.com/api/comments',
+    await axios.post(
+      'https://videotube.adaptable.app/api/comments',
       {
         userId: currentUser._id,
         videoId: videoId,
@@ -57,13 +58,6 @@ const Comments = ({ videoId }) => {
       },
       {
         withCredentials: true,
-        crossDomain: true,
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          'Access-Control-Allow-Origin':
-            'https://vocal-sprite-dd6c42.netlify.app',
-        },
       }
     )
   }

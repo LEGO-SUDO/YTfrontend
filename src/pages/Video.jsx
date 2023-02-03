@@ -10,7 +10,7 @@ import Comments from '../components/Comments'
 
 import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { useSelector, shallowEqual } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
@@ -120,8 +120,7 @@ object-fit: cover
 `
 
 const Video = () => {
-  //const { currentVideo } = useSelector((state) => state.video)
-  const [currentVideo, setCurrentVideo] = useState({})
+  const { currentVideo } = useSelector((state) => state.video)
 
   const { currentUser } = useSelector((state) => state.user)
   const dispatch = useDispatch()
@@ -134,14 +133,14 @@ const Video = () => {
     const fetchData = async () => {
       try {
         const videoRes = await axios.get(
-          `https://legotube-api.onrender.com/api/videos/find/${path}`
+          `https://videotube.adaptable.app/api/videos/find/${path}`
         )
         const channelRes = await axios.get(
-          `https://legotube-api.onrender.com/api/users/find/${videoRes.data.userId}`
+          `https://videotube.adaptable.app/api/users/find/${videoRes.data.userId}`
         )
         console.log(videoRes.data)
         setChannel(channelRes.data)
-        setCurrentVideo(videoRes.data)
+
         dispatch(fetchSuccess(videoRes.data))
       } catch (err) {
         console.log(err)
@@ -152,16 +151,10 @@ const Video = () => {
 
   const handleLike = async () => {
     await axios.put(
-      `https://legotube-api.onrender.com/api/users/like/${currentVideo._id}`,
+      `https://videotube.adaptable.app/api/users/like/${currentVideo._id}`,
+      null,
       {
         withCredentials: true,
-        crossDomain: true,
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          'Access-Control-Allow-Origin':
-            'https://vocal-sprite-dd6c42.netlify.app',
-        },
       }
     )
     dispatch(like(currentUser._id))
@@ -169,16 +162,10 @@ const Video = () => {
 
   const handleDislike = async () => {
     await axios.put(
-      `https://legotube-api.onrender.com/api/users/dislike/${currentVideo._id}`,
+      `https://videotube.adaptable.app/api/users/dislike/${currentVideo._id}`,
+      null,
       {
         withCredentials: true,
-        crossDomain: true,
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          'Access-Control-Allow-Origin':
-            'https://vocal-sprite-dd6c42.netlify.app',
-        },
       }
     )
     dispatch(dislike(currentUser._id))
@@ -187,29 +174,17 @@ const Video = () => {
   const handleSubscribe = async () => {
     currentUser.subscribedUsers.includes(channel._id)
       ? await axios.put(
-          `https://legotube-api.onrender.com/api/users/unsub/${channel._id}`,
+          `https://videotube.adaptable.app/api/users/unsub/${channel._id}`,
+          null,
           {
             withCredentials: true,
-            crossDomain: true,
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-              'Access-Control-Allow-Origin':
-                'https://vocal-sprite-dd6c42.netlify.app',
-            },
           }
         )
       : await axios.put(
-          `https://legotube-api.onrender.com/api/users/sub/${channel._id}`,
+          `https://videotube.adaptable.app/api/users/sub/${channel._id}`,
+          null,
           {
             withCredentials: true,
-            crossDomain: true,
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-              'Access-Control-Allow-Origin':
-                'https://vocal-sprite-dd6c42.netlify.app',
-            },
           }
         )
     dispatch(subscription(channel._id))
@@ -220,19 +195,18 @@ const Video = () => {
       <Content>
         <VideoWrapper>
           <VideoFrame
-            // {currentVideo.videoUrl}
-            src='https://www.youtube.com/watch?v=-u04JD5Eo-c'
+            src={currentVideo.videoUrl}
             controls
             style={{ maxWidth: '680px' }}
           />
         </VideoWrapper>
-        {/* {currentVideo.title} */}
-        <Title>{channel.name}</Title>
+        {/*  */}
+        <Title>{currentVideo.title}</Title>
         <Details>
           <Info>
             {' '}
-            {/* {currentVideo.views} */}
-            {channel.name} views • {format(currentVideo.createdAt)}
+            {/*  */}
+            {currentVideo.views} views • {format(currentVideo.createdAt)}
           </Info>
           <Buttons>
             <Button onClick={handleLike}>
@@ -270,7 +244,7 @@ const Video = () => {
             </ChannelDetail>
           </ChannelInfo>
           <Subscribe onClick={handleSubscribe}>
-            {currentUser.subscribedUsers?.includes(channel._id)
+            {channel.subscribedUsers?.includes(channel._id)
               ? 'SUBSCRIBED'
               : 'SUBSCRIBE'}
           </Subscribe>
