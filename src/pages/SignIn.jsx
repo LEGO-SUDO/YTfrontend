@@ -6,7 +6,6 @@ import { loginFailure, loginStart, loginSuccess } from '../redux/userSlice'
 import { auth, provider } from '../firebase'
 import { signInWithPopup } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
 
 const Container = styled.div`
   display: flex;
@@ -82,17 +81,10 @@ const SignIn = () => {
 
     try {
       const res = await axios.post(
-        'https://videotube.adaptable.app/api/auth/signin',
+        'https://legotube-api.onrender.com/api/auth/signin',
         { name, password },
         {
           withCredentials: true,
-          crossDomain: true,
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            'Access-Control-Allow-Origin':
-              'https://vocal-sprite-dd6c42.netlify.app',
-          },
         }
       )
       dispatch(loginSuccess(res.data))
@@ -104,17 +96,10 @@ const SignIn = () => {
 
   const handleSignup = async (e) => {
     const res = await axios.post(
-      'https://videotube.adaptable.app/api/auth/signup',
+      'https://legotube-api.onrender.com/api/auth/signup',
       { name, email, password },
       {
         withCredentials: true,
-        crossDomain: true,
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          'Access-Control-Allow-Origin':
-            'https://vocal-sprite-dd6c42.netlify.app',
-        },
       }
     )
     dispatch(loginSuccess(res.data))
@@ -126,7 +111,7 @@ const SignIn = () => {
       .then((result) => {
         axios
           .post(
-            'https://videotube.adaptable.app/api/auth/google',
+            'https://legotube-api.onrender.com/api/auth/google',
             {
               name: result.user.displayName,
               email: result.user.email,
@@ -134,13 +119,6 @@ const SignIn = () => {
             },
             {
               withCredentials: true,
-              crossDomain: true,
-              headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-                'Access-Control-Allow-Origin':
-                  'https://vocal-sprite-dd6c42.netlify.app',
-              },
             }
           )
           .then((res) => {

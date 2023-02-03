@@ -117,6 +117,7 @@ const VideoFrame = styled.video`
 max-height: 72px
 width:50%
 object-fit: cover
+overflow: hidden
 `
 
 const Video = () => {
@@ -133,10 +134,10 @@ const Video = () => {
     const fetchData = async () => {
       try {
         const videoRes = await axios.get(
-          `https://videotube.adaptable.app/api/videos/find/${path}`
+          `https://legotube-api.onrender.com/api/videos/find/${path}`
         )
         const channelRes = await axios.get(
-          `https://videotube.adaptable.app/api/users/find/${videoRes.data.userId}`
+          `https://legotube-api.onrender.com/api/users/find/${videoRes.data.userId}`
         )
         console.log(videoRes.data)
         setChannel(channelRes.data)
@@ -151,7 +152,7 @@ const Video = () => {
 
   const handleLike = async () => {
     await axios.put(
-      `https://videotube.adaptable.app/api/users/like/${currentVideo._id}`,
+      `https://legotube-api.onrender.com/api/users/like/${currentVideo._id}`,
       null,
       {
         withCredentials: true,
@@ -162,7 +163,7 @@ const Video = () => {
 
   const handleDislike = async () => {
     await axios.put(
-      `https://videotube.adaptable.app/api/users/dislike/${currentVideo._id}`,
+      `https://legotube-api.onrender.com/api/users/dislike/${currentVideo._id}`,
       null,
       {
         withCredentials: true,
@@ -174,14 +175,14 @@ const Video = () => {
   const handleSubscribe = async () => {
     currentUser.subscribedUsers.includes(channel._id)
       ? await axios.put(
-          `https://videotube.adaptable.app/api/users/unsub/${channel._id}`,
+          `https://legotube-api.onrender.com/api/users/unsub/${channel._id}`,
           null,
           {
             withCredentials: true,
           }
         )
       : await axios.put(
-          `https://videotube.adaptable.app/api/users/sub/${channel._id}`,
+          `https://legotube-api.onrender.com/api/users/sub/${channel._id}`,
           null,
           {
             withCredentials: true,

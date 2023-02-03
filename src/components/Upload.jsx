@@ -143,25 +143,16 @@ const Upload = ({ setOpen }) => {
   const handleUpload = async (e) => {
     e.preventDefault()
     const res = await axios.post(
-      'https://videotube.adaptable.app/api/videos',
+      'https://legotube-api.onrender.com/api/videos',
       {
         ...inputs,
         tags,
       },
-      {
-        withCredentials: true,
-        crossDomain: true,
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          'Access-Control-Allow-Origin':
-            'https://vocal-sprite-dd6c42.netlify.app',
-        },
-      }
+      { withCredentials: true }
     )
     setOpen(false)
 
-    res.status === 200 && navigate(`/video/${res.data._id}`)
+    res.status === 200 && navigate(`/trends`)
   }
 
   return (
